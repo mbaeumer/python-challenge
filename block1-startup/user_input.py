@@ -1,6 +1,5 @@
 #!/usr/bin/python
-
-import sys
-
+print("Demo of user input")
+print("")
 response = input("Please enter your name: ")
 print ("Hello, ", response)
