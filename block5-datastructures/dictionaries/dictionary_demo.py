@@ -19,6 +19,9 @@ conversion_rates['ch'] = 0.11
 print("following conversion rates are available: ")
 print_dictionary(conversion_rates)
 
-# checking if an entry exists
-print('eu' in conversion_rates)
-print('no' in conversion_rates)
+# checking if a key exists
+key = input("Enter a key to check if it exists: ")
+if (key in conversion_rates):
+  print("the key '%s' exists" % (key))
+else:
+  print("the key '%s' does not exist" % (key))
