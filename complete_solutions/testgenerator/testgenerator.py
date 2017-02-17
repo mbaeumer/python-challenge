@@ -7,7 +7,7 @@ def main(argv):
     print("Provided arguments OK...")
     writeFile(argv[1], argv[2])
   else:
-    print("NOT OK") 
+    print(create_usage()) 
 
 def validateArguments(argv):
   if len(argv) != 3:
@@ -18,6 +18,11 @@ def validateArguments(argv):
     print("The given filename is not correct")
     return False
   return True
+
+def create_usage():
+  result = "Usage:\n"
+  result += "arg1: filename"
+  return result
 
 def writeFile(filename, classname):
   print("Writing test class '%s' to %s..." % (classname, filename))

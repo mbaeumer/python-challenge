@@ -34,5 +34,9 @@ def indent(indents):
 def get_main_header():
   return "if __name__ == '__main__'\n"
 
+def create_comment(comment):
+  result = "#"
+  result += comment
+
 def get_main_body():
   return "unittest.main()"
