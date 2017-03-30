@@ -3,10 +3,10 @@ import sys
 
 def main(argv):
   if validateCliArgs(argv):
-    writeMarkDownBlogFile(argv[1])
+    writeMarkDownBlogFile(argv[1], argv[2])
 
 def validateCliArgs(argv):
-  if len(argv) < 2:
+  if len(argv) < 3:
     print("Sorry, you have not provided the correct arguments!")
     return False
   targetFileName = str(argv[1])
@@ -22,7 +22,7 @@ def getLayoutString(layout):
   return "layout: " + layout + "\n"
 
 def getTitleString(title):
-  return "title: " + title + "\n"
+  return "title: " + "\"" + title + "\"" "\n"
 
 def getDateString(date):
   return "date: " + date + "\n"
@@ -30,12 +30,12 @@ def getDateString(date):
 def getCategoryString(category):
   return "categories: " + category + "\n"
 
-def writeMarkDownBlogFile(filename):
+def writeMarkDownBlogFile(filename, title):
   print("Wrting to file %s" % (filename))  
   file = open(filename, "w")
   file.write(getHeaderDashes())
   file.write(getLayoutString("post"))
-  file.write(getTitleString("test-title"))
+  file.write(getTitleString(title))
   file.write(getDateString("2017-03-28 22:00:00"))
   file.write(getCategoryString("jekyll update"))
   file.write(getHeaderDashes())
