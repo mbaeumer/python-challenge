@@ -1,6 +1,0 @@
----
-layout: post
-title: "my-custom-title"
-date: 2017-03-28 22:00:00
-categories: jekyll update
----
