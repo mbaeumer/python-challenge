@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import sys
 from cli_handler import CliHandler
+from date_util import DateHandler
 
 def main(argv):
   cli = CliHandler(argv)
@@ -23,12 +24,13 @@ def getCategoryString(category):
   return "categories: " + category + "\n"
 
 def writeMarkDownBlogFile(filename, title):
+  date_handler = DateHandler()
   print("Wrting to file %s" % (filename))  
   file = open(filename, "w")
   file.write(getHeaderDashes())
   file.write(getLayoutString("post"))
   file.write(getTitleString(title))
-  file.write(getDateString("2017-03-28 22:00:00"))
+  file.write(getDateString(date_handler.constructDateString()))
   file.write(getCategoryString("jekyll update"))
   file.write(getHeaderDashes())
   file.close()
