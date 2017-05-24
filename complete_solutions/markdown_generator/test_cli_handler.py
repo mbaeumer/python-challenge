@@ -16,7 +16,7 @@ class TestCliHandler(unittest.TestCase):
   def test_isValidArgs_return_OK_sometitle(self):
     argv = []
     argv.append("filename")
-    argv.append("somefile.txt")
+    argv.append("somefile.py")
     argv.append("sometitle")
     cli = CliHandler(argv)
     self.assertTrue(cli.isValidArgs() == ValidationResult.OK)
@@ -25,7 +25,7 @@ class TestCliHandler(unittest.TestCase):
   def test_isValidArgs_return_OK_multiple_words(self):
     argv = []
     argv.append("filename")
-    argv.append("somefile.txt")
+    argv.append("somefile.py")
     argv.append("my title")
     cli = CliHandler(argv)
     self.assertTrue(cli.isValidArgs() == ValidationResult.OK)
@@ -43,6 +43,13 @@ class TestCliHandler(unittest.TestCase):
     argv.append("filename")
     cli = CliHandler(argv)
     self.assertTrue(cli.isValidArgs() == ValidationResult.NOT_ENOUGH_ARGS)
+  
+  def test_isValidArgs_return_NOT_PYTHON(self):
+    argv = []
+    argv.append("filename")
+    argv.append("filename.txt")
+    cli = CliHandler(argv)
+    self.assertTrue(cli.isValidArgs() == ValidationResult.NOT_PYTHON)
 
 if __name__ == '__main__':
   unittest.main()

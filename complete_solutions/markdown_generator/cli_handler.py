@@ -17,11 +17,15 @@ class CliHandler:
       return ValidationResult.HELP
     if len(self.cliparams) < 2:
       return ValidationResult.NOT_ENOUGH_ARGS
-    if len(self.cliparams) == 2:
-      self.targetFilename = self.cliparams[1]
+    
+    self.targetFilename = self.cliparams[1]
+    
+    if len(self.cliparams) == 2 and str(self.targetFilename).endswith(".py"):
       return ValidationResult.OK
     
-    #if self.targetName
+    if not str(self.targetFilename).endswith(".py"):
+      return ValidationResult.NOT_PYTHON
+
     if len(self.cliparams) >= 3:
       index = 2
       while index < len(self.cliparams):
