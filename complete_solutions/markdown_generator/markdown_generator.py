@@ -2,12 +2,24 @@
 import sys
 from cli_handler import CliHandler
 from date_util import DateHandler
+from cli_validation_result import ValidationResult
+
+def print_usage():
+  print("Usage:")
+  print("--------------")
+  print("[1]: the target file name")
+  print("[2]: the title of the blog post (optional)")
 
 def main(argv):
   cli = CliHandler(argv)
-  if cli.isValidArgs():
+  if cli.isValidArgs() == ValidationResult.OK:
     writeMarkDownBlogFile(cli.targetFilename, cli.title)
-
+  elif cli.isValidArgs() == ValidationResult.NOT_ENOUGH_ARGS:
+    print("ERROR: You have not provided enough arguments!")
+    print("Use -help to find out more about the usage...")  
+  elif cli.isValidArgs() == ValidationResult.HELP:
+    print_usage()
+    
 def getHeaderDashes():
   return "---\n"
 

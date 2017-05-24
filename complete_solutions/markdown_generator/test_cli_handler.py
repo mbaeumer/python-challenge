@@ -1,32 +1,48 @@
 #!/usr/bin/python
 import unittest
 from cli_handler import CliHandler
+from cli_validation_result import ValidationResult
 
-class TestliHandler(unittest.TestCase):
-  def test_create_object(self):
+class TestCliHandler(unittest.TestCase):
+  def test_isValidArgs_return_OK_empty_title(self):
     argv = []
-    argv.append("test0")
-    argv.append("test1")
+    argv.append("filename.py")
+    argv.append("targetfile.py")
     cli = CliHandler(argv)
+    self.assertTrue(cli.isValidArgs() == ValidationResult.OK)
     self.assertTrue(cli.title == "")
+    self.assertTrue(str(cli.targetFilename) == "targetfile.py")
 
-  def test_isVaidArgs_return_true_if_valid(self):
+  def test_isValidArgs_return_OK_sometitle(self):
     argv = []
     argv.append("filename")
     argv.append("somefile.txt")
     argv.append("sometitle")
     cli = CliHandler(argv)
-    self.assertTrue(cli.isValidArgs())
+    self.assertTrue(cli.isValidArgs() == ValidationResult.OK)
     self.assertTrue(str(cli.title) == 'sometitle')
 
-  def test_isValidArgs_return_true_multiple_words(self):
+  def test_isValidArgs_return_OK_multiple_words(self):
     argv = []
     argv.append("filename")
     argv.append("somefile.txt")
     argv.append("my title")
     cli = CliHandler(argv)
-    self.assertTrue(cli.isValidArgs())
+    self.assertTrue(cli.isValidArgs() == ValidationResult.OK)
     self.assertTrue(cli.title == "my title")
+
+  def test_isValidArgs_return_HELP(self):
+    argv = []
+    argv.append("filename")
+    argv.append("-help")
+    cli = CliHandler(argv)
+    self.assertTrue(cli.isValidArgs() == ValidationResult.HELP)
+  
+  def test_isValidArgs_return_NOT_ENOUGH_ARGS(self):
+    argv = []
+    argv.append("filename")
+    cli = CliHandler(argv)
+    self.assertTrue(cli.isValidArgs() == ValidationResult.NOT_ENOUGH_ARGS)
 
 if __name__ == '__main__':
   unittest.main()
