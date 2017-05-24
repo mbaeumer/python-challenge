@@ -19,6 +19,8 @@ def main(argv):
     print("Use -help to find out more about the usage...")  
   elif cli.isValidArgs() == ValidationResult.HELP:
     print_usage()
+  elif cli.isValidArgs() == ValidationResult.NOT_PYTHON:
+    print("ERROR: The target file should be a python file!")  
     
 def getHeaderDashes():
   return "---\n"
