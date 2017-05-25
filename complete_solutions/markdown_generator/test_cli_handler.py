@@ -7,16 +7,16 @@ class TestCliHandler(unittest.TestCase):
   def test_isValidArgs_return_OK_empty_title(self):
     argv = []
     argv.append("filename.py")
-    argv.append("targetfile.py")
+    argv.append("targetfile.markdown")
     cli = CliHandler(argv)
     self.assertTrue(cli.isValidArgs() == ValidationResult.OK)
     self.assertTrue(cli.title == "")
-    self.assertTrue(str(cli.targetFilename) == "targetfile.py")
+    self.assertTrue(str(cli.targetFilename) == "targetfile.markdown")
 
   def test_isValidArgs_return_OK_sometitle(self):
     argv = []
     argv.append("filename")
-    argv.append("somefile.py")
+    argv.append("somefile.markdown")
     argv.append("sometitle")
     cli = CliHandler(argv)
     self.assertTrue(cli.isValidArgs() == ValidationResult.OK)
@@ -25,7 +25,7 @@ class TestCliHandler(unittest.TestCase):
   def test_isValidArgs_return_OK_multiple_words(self):
     argv = []
     argv.append("filename")
-    argv.append("somefile.py")
+    argv.append("somefile.markdown")
     argv.append("my title")
     cli = CliHandler(argv)
     self.assertTrue(cli.isValidArgs() == ValidationResult.OK)
@@ -44,12 +44,12 @@ class TestCliHandler(unittest.TestCase):
     cli = CliHandler(argv)
     self.assertTrue(cli.isValidArgs() == ValidationResult.NOT_ENOUGH_ARGS)
   
-  def test_isValidArgs_return_NOT_PYTHON(self):
+  def test_isValidArgs_return_NOT_MARKDOWN(self):
     argv = []
     argv.append("filename")
     argv.append("filename.txt")
     cli = CliHandler(argv)
-    self.assertTrue(cli.isValidArgs() == ValidationResult.NOT_PYTHON)
+    self.assertTrue(cli.isValidArgs() == ValidationResult.NOT_MARKDOWN)
 
 if __name__ == '__main__':
   unittest.main()

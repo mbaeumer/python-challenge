@@ -20,11 +20,11 @@ class CliHandler:
     
     self.targetFilename = self.cliparams[1]
     
-    if len(self.cliparams) == 2 and str(self.targetFilename).endswith(".py"):
+    if len(self.cliparams) == 2 and str(self.targetFilename).endswith(".markdown"):
       return ValidationResult.OK
     
-    if not str(self.targetFilename).endswith(".py"):
-      return ValidationResult.NOT_PYTHON
+    if not str(self.targetFilename).endswith(".markdown"):
+      return ValidationResult.NOT_MARKDOWN
 
     if len(self.cliparams) >= 3:
       index = 2

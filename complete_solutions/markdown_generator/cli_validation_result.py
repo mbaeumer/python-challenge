@@ -5,4 +5,4 @@ class ValidationResult(Enum):
   OK = 1
   HELP = 2
   NOT_ENOUGH_ARGS = 3
-  NOT_PYTHON = 4
+  NOT_MARKDOWN = 4
