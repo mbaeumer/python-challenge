@@ -2,6 +2,8 @@
 import unittest
 from markdown_format_util import generate_heading
 from markdown_format_util import generate_bullet_list
+from markdown_format_util import generate_italic_text
+from markdown_format_util import generate_bold_text
 
 
 class TestMarkdownFormatUtil(unittest.TestCase):
@@ -16,6 +18,16 @@ class TestMarkdownFormatUtil(unittest.TestCase):
     test_list = self.create_test_list()
     self.assertTrue(generate_bullet_list(test_list) == expected)  
 
+  def test_generate_italic_text(self):
+    expected = "__italics__"
+    text = "italics"
+    self.assertTrue(generate_italic_text(text) == expected)
+
+  def test_generate_bold_text(self):
+    expected = "**bold**"
+    text = "bold"
+    self.assertTrue(generate_bold_text(text) == expected)
+  
   def create_test_list(self):
     list = []
     list.append("bullet1")
@@ -24,7 +36,7 @@ class TestMarkdownFormatUtil(unittest.TestCase):
     return list
 
   def create_expected_string(self):
-    result = "\n"
+    result = "\n\n"
     result = result + "* bullet1\n"
     result = result + "* bullet2\n"
     result = result + "* bullet3\n"

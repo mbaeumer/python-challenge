@@ -5,6 +5,9 @@ from date_util import DateHandler
 from cli_validation_result import ValidationResult
 from markdown_format_util import generate_heading
 from markdown_format_util import generate_bullet_list
+from markdown_format_util import generate_bold_text
+from markdown_format_util import generate_italic_text
+
 
 def print_usage():
   print("Usage:")
@@ -66,6 +69,10 @@ def writeFormatting(file):
   file.write(generate_heading(3, "heading three"))
   file.write("\n")
   file.write(generate_bullet_list(create_dummy_list()))
+  file.write("\n")
+  file.write(generate_bold_text("bold text"))
+  file.write("\n")
+  file.write(generate_italic_text("italic text"))
 
 def create_dummy_list():
   bullets = []

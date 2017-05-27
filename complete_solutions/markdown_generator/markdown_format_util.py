@@ -10,10 +10,18 @@ def generate_heading(level, text):
   return result 
 
 def generate_bullet_list(list):
-  result = "\n"
+  result = "\n\n"
   for item in list:
     result = result + "* " + item + "\n"
   result = result + "\n"
+  return result
+
+def generate_italic_text(text):
+  result = "__" + text + "__"
+  return result
+
+def generate_bold_text(text):
+  result = "**" + text + "**"
   return result
  
 
