@@ -18,7 +18,14 @@ if lorem == 'lorem ipsum':
 else:
   print("The strings are not equal")
 
+print("Checking if a string contains certain characters:")
+print("m" in lorem)
+print("a" in lorem)
+
 print("Iterate through a string")
+for c in lorem:
+  print(c)
+
 i = 0
 while i < len(lorem):
   print(lorem[i])
