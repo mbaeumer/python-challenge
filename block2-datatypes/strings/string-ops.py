@@ -22,10 +22,16 @@ print("Checking if a string contains certain characters:")
 print("m" in lorem)
 print("a" in lorem)
 
+print("Checking at which index a certain substring appears")
+print("lorem", lorem.find("lorem"))
+print("rem", lorem.find("rem"))
+print("ips", lorem.find("ips"))
+print("abc", lorem.find("abc"))
+
 print("Iterate through a string")
 for c in lorem:
   print(c)
-
+print("")
 i = 0
 while i < len(lorem):
   print(lorem[i])
