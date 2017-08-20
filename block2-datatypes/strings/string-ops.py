@@ -12,11 +12,19 @@ print("isnumeric: " + str(lorem.isnumeric()))
 print("isspace: " + str(lorem.isspace()))
 
 lorem2 = "lorem ipsum"
-print("Testing for string equality")
-if lorem == 'lorem ipsum':
+print("Testing for string equality (case_sensitive)")
+if lorem == lorem2:
   print("The strings are equal")
 else:
   print("The strings are not equal")
+
+lorem2 = "Lorem ipsum"
+print("Testing for string equality (case-insensitive)")
+if lorem.lower() == lorem2.lower():
+  print("The strings are equal")
+else:
+  print("The strings are not equal")
+
 
 print("Checking if a string contains certain characters:")
 print("m" in lorem)
