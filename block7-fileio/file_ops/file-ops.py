@@ -36,3 +36,10 @@ if os.path.isfile(filename):
   print("The file %s has been deleted" % (filename))
 else:
   print("The file %s does not exist" % (filename))
+
+print("...creating a folder")
+directory = "temp"
+if not os.path.exists(directory):
+  os.makedirs(directory)
+else:
+  print("The directory %s already exists" % (directory))
