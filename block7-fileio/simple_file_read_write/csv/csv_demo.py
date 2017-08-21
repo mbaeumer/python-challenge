@@ -1,11 +1,17 @@
 #!/usr/bin/python
 from csvreader import read_csv_file
 from parsestats import ParseStats
+from csvwriter import write_csv_file
+from person import Person
 
 def main():
   print_title()
   persons = read_file()
   prepare_format(persons)
+  ps = prepare_format(persons)
+  print_result(ps, persons) 
+  persons.append(create_dummy_person())
+  write_csv_file("persons.csv", persons)
   ps = prepare_format(persons)
   print_result(ps, persons) 
  
@@ -50,8 +56,8 @@ def print_result(ps, persons):
   for p in persons:
     p.lastname = adjust_length(p.lastname, ps.last)
     p.firstname = adjust_length(p.firstname, ps.first)
-    p.salary = get_as_currency(float(p.salary))
-    print("%s %s %s" % (p.lastname, p.firstname, p.salary))
+    p.salary_as_string = get_as_currency(float(p.salary))
+    print("%s %s %s" % (p.lastname, p.firstname, p.salary_as_string))
 
 def get_as_currency(value):
   return '{:,.2f}$'.format(value)
@@ -62,5 +68,11 @@ def adjust_length(text, max):
     text = text + " "
     index = index + 1
   return text
+
+def create_dummy_person():
+  print("Creating a dummy person...")
+  person = Person("New John", "Doe", 88)
+  return person
+
 if __name__ == '__main__':
   main()
