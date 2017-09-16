@@ -7,6 +7,7 @@ def print_list(names):
   for name in names:
     print("%s" % (name))
   print("-----END OF LIST------")
+
 names = []
 names.append("Martin")
 
@@ -26,3 +27,6 @@ print_list(names)
 
 del names[1]
 print_list(names)
+
+print("Getting the size of the list")
+print(len(names))
