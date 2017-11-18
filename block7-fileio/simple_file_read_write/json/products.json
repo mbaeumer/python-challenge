@@ -1,0 +1,34 @@
+{
+    "products": [
+        {
+            "quantity": 12,
+            "name": "Widget",
+            "price": 25.0
+        },
+        {
+            "quantity": 5,
+            "name": "Phone",
+            "price": 37.0
+        },
+        {
+            "quantity": 23,
+            "name": "Laptop",
+            "price": 1500.0
+        },
+        {
+            "quantity": 15,
+            "name": "bed",
+            "price": 560.0
+        },
+        {
+            "quantity": 77,
+            "name": "cd-player",
+            "price": 120.0
+        },
+        {
+            "quantity": 4321,
+            "name": "new-product",
+            "price": 1234
+        }
+    ]
+}
