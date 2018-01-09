@@ -1,24 +1,6 @@
 *.lock
 *.swp
-*.out
-*.log
-*.jar
-
-# Java
-*.class
-*.jar
-*.war
-*.ear
- 
-# Maven
-target/
-
-# Eclipse
-.classpath
-.project
-.settings/
-
-# Intellij
+*.pyc
 .idea/
 *.iml
 *.iws
