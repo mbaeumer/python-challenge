@@ -5,7 +5,8 @@ from markdown_format_util import generate_bullet_list
 from markdown_format_util import generate_italic_text
 from markdown_format_util import generate_bold_text
 from markdown_format_util import generate_code_snippet
-
+from markdown_format_util import generate_link
+from markdown_format_util import generate_image
 
 class TestMarkdownFormatUtil(unittest.TestCase):
   def test_generate_heading_level_one(self):
@@ -33,12 +34,19 @@ class TestMarkdownFormatUtil(unittest.TestCase):
     expected = "{% highlight python %}\n"
     expected = expected + "print('teststring')\n"
     expected = expected + "{% endhighlight %}\n"
-
     actual = generate_code_snippet("print('teststring')")
-    print(expected)
-    print(actual)
     self.assertTrue(actual == expected)
 
+  def test_generate_link(self):
+    expected = "[some title](http://url.com)"
+    actual = generate_link("some title", "http://url.com") 
+    self.assertTrue(actual == expected)
+
+  def test_generate_image(self):
+    expected = "![](path/to/file)"
+    path = "path/to/file"
+    actual = generate_image(path)
+    self.assertTrue(actual == expected)
   
   def create_test_list(self):
     list = []

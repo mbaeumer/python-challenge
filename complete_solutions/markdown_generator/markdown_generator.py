@@ -8,6 +8,8 @@ from markdown_format_util import generate_bullet_list
 from markdown_format_util import generate_bold_text
 from markdown_format_util import generate_italic_text
 from markdown_format_util import generate_code_snippet
+from markdown_format_util import generate_link
+from markdown_format_util import generate_image
 
 def print_usage():
   print("Usage:")
@@ -75,6 +77,11 @@ def writeFormatting(file):
   file.write(generate_italic_text("italic text"))
   file.write("\n")
   file.write(generate_code_snippet("print('teststring')"))
+  file.write("\n")
+  file.write(generate_link("link title", "http://url.com"))
+  file.write("\n")
+  file.write(generate_image("path/to/file"))
+
 
 def create_dummy_list():
   bullets = []

@@ -29,3 +29,12 @@ def generate_code_snippet(text):
   end = "{% endhighlight %}"
   result = start + text + "\n" + end + "\n"
   return result
+
+def generate_link(title, url):
+  result = "[" + title + "]"
+  result = result + "(" + url + ")"
+  return result
+
+def generate_image(path):
+  result = "![](" + path + ")"
+  return result
