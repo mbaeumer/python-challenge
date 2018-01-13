@@ -24,4 +24,8 @@ def generate_bold_text(text):
   result = "**" + text + "**"
   return result
  
-
+def generate_code_snippet(text):
+  start = "{% highlight python %}\n"
+  end = "{% endhighlight %}"
+  result = start + text + "\n" + end + "\n"
+  return result

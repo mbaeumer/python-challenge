@@ -4,6 +4,7 @@ from markdown_format_util import generate_heading
 from markdown_format_util import generate_bullet_list
 from markdown_format_util import generate_italic_text
 from markdown_format_util import generate_bold_text
+from markdown_format_util import generate_code_snippet
 
 
 class TestMarkdownFormatUtil(unittest.TestCase):
@@ -27,6 +28,17 @@ class TestMarkdownFormatUtil(unittest.TestCase):
     expected = "**bold**"
     text = "bold"
     self.assertTrue(generate_bold_text(text) == expected)
+  
+  def test_generate_code_snippet(self):
+    expected = "{% highlight python %}\n"
+    expected = expected + "print('teststring')\n"
+    expected = expected + "{% endhighlight %}\n"
+
+    actual = generate_code_snippet("print('teststring')")
+    print(expected)
+    print(actual)
+    self.assertTrue(actual == expected)
+
   
   def create_test_list(self):
     list = []

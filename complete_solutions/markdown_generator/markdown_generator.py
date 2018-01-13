@@ -7,7 +7,7 @@ from markdown_format_util import generate_heading
 from markdown_format_util import generate_bullet_list
 from markdown_format_util import generate_bold_text
 from markdown_format_util import generate_italic_text
-
+from markdown_format_util import generate_code_snippet
 
 def print_usage():
   print("Usage:")
@@ -24,8 +24,8 @@ def main(argv):
     print("Use -help to find out more about the usage...")  
   elif cli.isValidArgs() == ValidationResult.HELP:
     print_usage()
-  elif cli.isValidArgs() == ValidationResult.NOT_PYTHON:
-    print("ERROR: The target file should be a python file!")  
+  elif cli.isValidArgs() == ValidationResult.NOT_MARKDOWN:
+    print("ERROR: The target file should be a markdown file!")  
     
 def getHeaderDashes():
   return "---\n"
@@ -73,6 +73,8 @@ def writeFormatting(file):
   file.write(generate_bold_text("bold text"))
   file.write("\n")
   file.write(generate_italic_text("italic text"))
+  file.write("\n")
+  file.write(generate_code_snippet("print('teststring')"))
 
 def create_dummy_list():
   bullets = []
