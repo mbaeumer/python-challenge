@@ -36,6 +36,11 @@ print("rem", lorem.find("rem"))
 print("ips", lorem.find("ips"))
 print("abc", lorem.find("abc"))
 
+print("Checking how often a substring appears:")
+teststring = "abbaaaa"
+print(teststring)
+print(teststring.count("aa"))
+
 print("Iterate through a string")
 for c in lorem:
   print(c)
