@@ -12,6 +12,13 @@ names = []
 names.append("Martin")
 
 print_list(names)
+print("list content after insert")
+names.insert(0, "Kalle")
+print_list(names)
+
+del names[0]
+print("list content after del")
+print_list(names)
 
 if names.count("Joe") > 0:
   names.remove("Joe")
