@@ -2,6 +2,7 @@
 
 print("Demo of some basic list operations")
 print("")
+print("")
 
 def print_list(names):
   for name in names:
