@@ -63,3 +63,13 @@ print("Inserting a character into a string")
 new_lorem = lorem[:5] + "-" + lorem[6:]
 print("new string after modification: %s" % (new_lorem))
 
+print("Using the not operator")
+name=""
+if not name:
+  print("the name is not set")
+name="abc"
+if not name:
+  print("the name is still not set")
+else: 
+  print("now the name is set")
+  
