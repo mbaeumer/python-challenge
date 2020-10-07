@@ -31,6 +31,7 @@ def determine_type(answer):
 
 # showing difference in precision of float vs decimal
 def diff_decimal_float():
+  print("Difference between Decimal and float")
   x = Decimal("0.1")
   y = float("0.1")
   print(f"{x:.20f}")
@@ -51,6 +52,7 @@ def calc_with_floats():
   print(f"{c:.20f}")
 
 def format_number(number):
+  print("Formatting alternatives")
   print("{:.2f}".format(number))
   print("{:+.2f}".format(number))
   print("{:.0f}".format(number))
