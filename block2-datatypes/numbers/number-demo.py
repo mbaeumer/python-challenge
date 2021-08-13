@@ -1,6 +1,7 @@
 #!/usr/bin/python
 from decimal import Decimal
 from decimal import DecimalException
+import random
 
 def get_user_input():
   answer = ""
@@ -64,6 +65,13 @@ def format_number(number):
   print("{:<10d}".format(50))
   print("{:^10d}".format(50))
 
+def generate_random_numbers():
+  random1 = random.randint(1,6) # 1..6
+  random2 = random.randrange(6) # 0..5
+  print("Generating random numbers")
+  print("With randint: ", random1)
+  print("With randrange: ", random2)
+
 answer = get_user_input()
 print(type(answer))
 convert_to_int(answer)
@@ -73,10 +81,8 @@ diff_decimal_float()
 calc_with_decimals()
 calc_with_floats()
 format_number(34/7)
+generate_random_numbers()
 
 
 # TODO:
-# int, float
-# from string
-# formatting
 # currency
