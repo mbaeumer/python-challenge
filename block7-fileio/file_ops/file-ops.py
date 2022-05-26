@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import os
+import glob
 
 def main():
   print_info()
@@ -9,6 +10,8 @@ def main():
   show_file_type("data")
   rename_file("data/data1.txt", "data/data2.txt")
   show_file_type("data")
+  print(get_file_extension("source_text.txt"))
+  walk_files_in_dir("parent_folder")
 
 def print_info():
   print("Demo of file operations in python")
@@ -49,6 +52,10 @@ def create_backup_directory(directory):
 
 def rename_file(old_name, new_name):
   print("renaming a file...")
+  if not os.path.isfile(old_name):
+    print("The file %s does not exist and cannot be renamed" % (old_name))
+    return
+
   os.rename(old_name, new_name)
   #if os.path.exists(new_name):
     #print("The file %s was renamed to %s" % (old_name, new_name))
@@ -66,6 +73,15 @@ def get_file_stats():
   filename = "source_folder/source_text.txt"
   statresult = os.stat(filename)
   print(statresult.st_size)
+
+def get_file_extension(filename):
+  print("get file extension")
+  return os.path.splitext(filename)[1]
+
+def walk_files_in_dir(base_dir):
+  files = glob.glob(base_dir + '/**/*.*', recursive=True)
+  for file in files:
+    print(file)
 
 if __name__ == '__main__':
   main()
