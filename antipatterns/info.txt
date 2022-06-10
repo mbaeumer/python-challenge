@@ -2,7 +2,7 @@ context manager for files -
 type vs isinstance -
 use of exec -
 missing exception types -
-map()/filter() instead of list comprehension
+map()/filter() instead of list comprehension -
 not using else in a for loop
 single letter variable names
 asking for permission instead of forgiveness
@@ -12,4 +12,4 @@ not using zip()
 Using key in list to check if key is contained in list
 Not using get() to return default values from a dictionary
 Not Using explicit unpacking
-not using enumerate in loop
+not using enumerate() in loop
