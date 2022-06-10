@@ -72,6 +72,14 @@ def generate_random_numbers():
   print("With randint: ", random1)
   print("With randrange: ", random2)
 
+def operators_for_ints():
+  a = 5
+  b = 2
+  print("5/2 = %d" % (a/b))
+  print("5%%2 = %d" % (a%b))
+  print("5//2 = %d" % (a//b))
+
+
 answer = get_user_input()
 print(type(answer))
 convert_to_int(answer)
@@ -82,6 +90,7 @@ calc_with_decimals()
 calc_with_floats()
 format_number(34/7)
 generate_random_numbers()
+operators_for_ints()
 
 
 # TODO:
