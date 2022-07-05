@@ -1,11 +1,18 @@
+import sys
 
 # open file
 # loop through each line
 # if it is a medium link, edit it
 
-def read_links_from_file():
+def check_args(args):
+    try:
+      if len(args)!=2:
+        raise RuntimeError
+    except RuntimeError as re:
+        print("Provide exactly one argument")
+
+def read_links_from_file(filename):
     links = []
-    filename='/Users/martinbaumer/Documents/links/work-mac/2022/links_2022_w26_work_medium.txt'
     try:
       with open(filename, 'r') as file:
           for line in file:
@@ -22,8 +29,7 @@ def reparse_links(linkList):
             parsedlinks.append(link[0:link.find("?source=email")])
     return parsedlinks
 
-def write_file(parsedLinks):
-    filename = '/Users/martinbaumer/Documents/links/work-mac/2022/links_2022_w26_work_medium2.txt'
+def write_file(parsedLinks, filename):
     with open(filename, 'w') as file:
         for link in parsedLinks:
             file.write(link)
@@ -31,7 +37,8 @@ def write_file(parsedLinks):
 
 
 if __name__ == '__main__':
-    originalList = read_links_from_file()
+    check_args(sys.argv)
+    originalList = read_links_from_file(sys.argv[1])
     parsedLinks = reparse_links(originalList)
-    write_file(parsedLinks)
+    write_file(parsedLinks, sys.argv[1])
 
