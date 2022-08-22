@@ -22,11 +22,17 @@ def read_links_from_file(filename):
     return links
 
 def reparse_links(linkList):
+    totalLinks = 0
+    mediumLinks = 0
     parsedlinks = []
     for link in linkList:
+        totalLinks = totalLinks + 1
         if "medium.com" in link and "source=email" in link:
-            print("valid link. Index = %d" % (link.find("source=email")))
             parsedlinks.append(link[0:link.find("?source=email")])
+            mediumLinks = mediumLinks + 1
+        else:
+            parsedLinks.append(link)
+    print("total number of rows processed: %d; number of medium links: %d" % (totalLinks, mediumLinks))
     return parsedlinks
 
 def write_file(parsedLinks, filename):
@@ -34,6 +40,7 @@ def write_file(parsedLinks, filename):
         for link in parsedLinks:
             file.write(link)
             file.write("\n")
+    print("saved data to file: %s" % (filename))
 
 
 if __name__ == '__main__':
