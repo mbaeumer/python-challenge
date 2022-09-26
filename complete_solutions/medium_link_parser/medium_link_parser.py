@@ -26,10 +26,17 @@ def reparse_links(linkList):
     mediumLinks = 0
     parsedLinks = []
     for link in linkList:
+        if len(link.replace(" ", "")) == 0:
+            print("found empty line, skipping it")
+            continue
         totalLinks = totalLinks + 1
         if "medium.com" in link and "source=email" in link:
-            parsedLinks.append(link[0:link.find("?source=email")])
+            newLink = link[0:link.find("?source=email")] + "\n"
+            parsedLinks.append(newLink)
             mediumLinks = mediumLinks + 1
+        elif "medium.com" in link:
+            mediumLinks = mediumLinks + 1
+            parsedLinks.append(link)
         else:
             parsedLinks.append(link)
     print("total number of rows processed: %d; number of medium links: %d" % (totalLinks, mediumLinks))
