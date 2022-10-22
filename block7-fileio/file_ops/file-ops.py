@@ -12,6 +12,7 @@ def main():
   show_file_type("data")
   print(get_file_extension("source_text.txt"))
   walk_files_in_dir("parent_folder")
+  walk_files_with_filetype_in_dir("parent_folder", "py")
 
 def print_info():
   print("Demo of file operations in python")
@@ -80,6 +81,11 @@ def get_file_extension(filename):
 
 def walk_files_in_dir(base_dir):
   files = glob.glob(base_dir + '/**/*.*', recursive=True)
+  for file in files:
+    print(file)
+
+def walk_files_with_filetype_in_dir(base_dir, extension):
+  files = glob.glob(base_dir + '/**/*.' + extension, recursive=True)
   for file in files:
     print(file)
 
