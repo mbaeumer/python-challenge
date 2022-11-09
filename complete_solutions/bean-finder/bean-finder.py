@@ -1,5 +1,6 @@
 import glob
 from bean_type import BeanType
+from endpoint import Endpoint
 
 # find all Java files
 # find all RestControllers, Service, Component
@@ -46,14 +47,16 @@ def get_file_content(filename):
         print("File could not be found")
     return lines
 
-def find_endpoints(bean_mapping):
+def find_endpoints_per_controller(bean_mapping):
     endpoints = []
     restcontrollers = find_beans_by_type(bean_mapping, BeanType.CONTROLLER)
 
     for restcontroller in restcontrollers:
         lines = get_file_content(restcontroller)
         base_url = find_base_url(lines)
-        
+        endpoints.extend(find_endpoints(lines, base_url, restcontroller))
+
+    return endpoints
 
 
 def find_base_url(lines):
@@ -64,9 +67,45 @@ def find_base_url(lines):
             line_with_requestmapping = line
             break
     if len(line_with_requestmapping) > 0:
-        base_url = [line_with_requestmapping.find("("), line_with_requestmapping.find(")")]
+        start_index = int(line_with_requestmapping.find("(") + 2)
+        end_index = int(line_with_requestmapping.find(")") - 1)
+        base_url = line_with_requestmapping[start_index:end_index]
 
     return base_url
+
+def find_endpoints(lines, base_url, restcontroller):
+    endpoints = []
+    for line in lines:
+        if contains_mapping(line):
+            http_method = extract_http_method(line)
+            url = base_url + extract_url(line)
+            endpoints.append(Endpoint(http_method, url, restcontroller))
+
+    return endpoints
+
+def extract_url(line):
+    url = ""
+    if line.find("(") > 0:
+        start_index = int(line.find("(") + 2)
+        end_index = int(line.find(")") - 1)
+        url = line[start_index:end_index]
+
+    return url
+
+
+def contains_mapping(line):
+    return "@GetMapping" in line or "@PostMapping" in line or "@PutMapping" in line
+
+def extract_http_method(line):
+    http_method = ""
+    if "@GetMapping" in line:
+        http_method = "GET"
+    elif "@PostMapping" in line:
+        http_method = "POST"
+    elif "@PutMapping" in line:
+        http_method = "PUT"
+
+    return http_method
 
 def find_beans_by_type(bean_mapping, bean_type):
     filenames = []
@@ -76,10 +115,14 @@ def find_beans_by_type(bean_mapping, bean_type):
 
     return filenames
 
-
+def print_endpoints(mapping):
+    for e in mapping:
+        print(e.displayEndpoint())
 
 
 
 if __name__ == '__main__':
     all_java_files = find_all_java_files('/Users/martinbaumer/Documents/gitrepo/spring-boot-webclient-sandbox/04_testing_1/src/main/java')
     bean_mapping = find_beans(all_java_files)
+    endpoints = find_endpoints_per_controller(bean_mapping)
+    print_endpoints(endpoints)
