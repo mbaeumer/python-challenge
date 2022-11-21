@@ -94,7 +94,7 @@ def extract_url(line):
 
 
 def contains_mapping(line):
-    return "@GetMapping" in line or "@PostMapping" in line or "@PutMapping" in line
+    return "@GetMapping" in line or "@PostMapping" in line or "@PutMapping" in line or "@DeleteMapping" in line
 
 def extract_http_method(line):
     http_method = ""
@@ -104,6 +104,9 @@ def extract_http_method(line):
         http_method = "POST"
     elif "@PutMapping" in line:
         http_method = "PUT"
+    elif "@DeleteMapping" in line:
+        http_method = "DELETE"
+
 
     return http_method
 
@@ -119,6 +122,29 @@ def print_endpoints(mapping):
     for e in mapping:
         print(e.displayEndpoint())
 
+def get_bean_counts(bean_mapping):
+    controller_counter = 0
+    service_counter = 0
+    component_counter = 0
+    configuration_counter = 0
+    for k, v in bean_mapping.items():
+        if bean_mapping[k] == BeanType.CONTROLLER:
+            controller_counter = controller_counter + 1
+        elif bean_mapping[k] == BeanType.SERVICE:
+            service_counter = service_counter + 1
+        elif bean_mapping[k] == BeanType.COMPONENT:
+            component_counter = component_counter + 1
+        elif bean_mapping[k] == BeanType.CONFIGURATION:
+            configuration_counter = configuration_counter + 1
+
+
+    print("Bean counts")
+    print("Number of controllers: \t %d" % (controller_counter))
+    print("Number of services: \t %d" % (service_counter))
+    print("Number of components: \t %d" % (component_counter))
+    print("Number of configuration: \t %d" % (configuration_counter))
+
+
 
 
 if __name__ == '__main__':
@@ -126,3 +152,4 @@ if __name__ == '__main__':
     bean_mapping = find_beans(all_java_files)
     endpoints = find_endpoints_per_controller(bean_mapping)
     print_endpoints(endpoints)
+    get_bean_counts(bean_mapping)
