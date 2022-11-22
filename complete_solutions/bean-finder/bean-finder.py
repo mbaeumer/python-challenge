@@ -19,7 +19,9 @@ def showMenu():
 
 
     if userinput == "1":
-        print("Not finished yet")
+        all_java_files = find_all_java_files('/Users/martinbaumer/Documents/gitrepo/spring-boot-webclient-sandbox/04_testing_1/src/main/java')
+        bean_mapping = find_beans(all_java_files)
+        print_beans(bean_mapping)
     elif userinput == "2":
         all_java_files = find_all_java_files('/Users/martinbaumer/Documents/gitrepo/spring-boot-webclient-sandbox/04_testing_1/src/main/java')
         bean_mapping = find_beans(all_java_files)
@@ -49,7 +51,7 @@ def get_bean_type(filename):
               if "@RestController" in line:
                   bean_type = BeanType.CONTROLLER
               elif "@Service" in line:
-                  bean_type = BeanType.CONTROLLER
+                  bean_type = BeanType.SERVICE
               elif "@Component" in line:
                   bean_type = BeanType.COMPONENT
               elif "@Configuration" in line:
@@ -63,6 +65,11 @@ def find_beans(java_files):
     for file in java_files:
         bean_type_dict[file] = get_bean_type(file)
     return bean_type_dict
+
+def print_beans(bean_mapping):
+    for k, v in bean_mapping.items():
+        print(k + "-" + str(v))
+
 
 def get_file_content(filename):
     lines = []
