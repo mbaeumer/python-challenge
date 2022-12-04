@@ -6,7 +6,7 @@ from endpoint import Endpoint
 # find all RestControllers, Service, Component
 # find all endpoints
 
-def showMenu():
+def show_menu():
   menu_options = {
       1: 'List all beans',
       2: 'List all endpoints',
@@ -42,8 +42,6 @@ def showMenu():
         exit(0)
     else:
         print("Please choose a valid number!")
-
-
 
 
 def find_all_java_files(base_dir):
@@ -100,9 +98,7 @@ def find_endpoints_per_controller(bean_mapping):
         lines = get_file_content(restcontroller)
         base_url = find_base_url(lines)
         endpoints.extend(find_endpoints(lines, base_url, restcontroller))
-
     return endpoints
-
 
 def find_base_url(lines):
     base_url = ""
@@ -115,7 +111,6 @@ def find_base_url(lines):
         start_index = int(line_with_requestmapping.find("(") + 2)
         end_index = int(line_with_requestmapping.find(")") - 1)
         base_url = line_with_requestmapping[start_index:end_index]
-
     return base_url
 
 def find_endpoints(lines, base_url, restcontroller):
@@ -125,7 +120,6 @@ def find_endpoints(lines, base_url, restcontroller):
             http_method = extract_http_method(line)
             url = base_url + extract_url(line)
             endpoints.append(Endpoint(http_method, url, restcontroller))
-
     return endpoints
 
 def extract_url(line):
@@ -134,9 +128,7 @@ def extract_url(line):
         start_index = int(line.find("(") + 2)
         end_index = int(line.find(")") - 1)
         url = line[start_index:end_index]
-
     return url
-
 
 def contains_mapping(line):
     return "@GetMapping" in line or "@PostMapping" in line or "@PutMapping" in line or "@DeleteMapping" in line
@@ -152,7 +144,6 @@ def extract_http_method(line):
     elif "@DeleteMapping" in line:
         http_method = "DELETE"
 
-
     return http_method
 
 def find_beans_by_type(bean_mapping, bean_type):
@@ -160,7 +151,6 @@ def find_beans_by_type(bean_mapping, bean_type):
     for k,v in bean_mapping.items():
         if v == bean_type:
             filenames.append(k)
-
     return filenames
 
 def print_endpoints(mapping):
@@ -182,16 +172,12 @@ def get_bean_counts(bean_mapping):
         elif bean_mapping[k] == BeanType.CONFIGURATION:
             configuration_counter = configuration_counter + 1
 
-
     print("Bean counts")
     print("Number of controllers: \t %d" % (controller_counter))
     print("Number of services: \t %d" % (service_counter))
     print("Number of components: \t %d" % (component_counter))
     print("Number of configuration: \t %d" % (configuration_counter))
 
-
-
-
 if __name__ == '__main__':
-    showMenu()
+    show_menu()
 
