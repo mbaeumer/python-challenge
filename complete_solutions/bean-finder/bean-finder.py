@@ -19,7 +19,11 @@ def showMenu():
     print("---------")
     for k in menu_options.keys():
         print(k,"-",menu_options[k])
-    userinput = int(input("Enter your choice: "))
+    try:
+      userinput = int(input("Enter your choice: "))
+    except ValueError:
+        print("Please enter a number")
+        continue
 
     if userinput == 1:
         all_java_files = find_all_java_files('/Users/martinbaumer/Documents/gitrepo/spring-boot-webclient-sandbox/04_testing_1/src/main/java')
