@@ -34,8 +34,10 @@ def showMenu():
         all_java_files = find_all_java_files('/Users/martinbaumer/Documents/gitrepo/spring-boot-webclient-sandbox/04_testing_1/src/main/java')
         bean_mapping = find_beans(all_java_files)
         get_bean_counts(bean_mapping)
-    else:
+    elif userinput == 4:
         exit(0)
+    else:
+        print("Please choose a valid number!")
 
 
 
