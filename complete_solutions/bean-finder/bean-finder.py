@@ -7,30 +7,35 @@ from endpoint import Endpoint
 # find all endpoints
 
 def showMenu():
-  userinput = ""
-  while userinput != "X":
+  menu_options = {
+      1: 'List all beans',
+      2: 'List all endpoints',
+      3: 'Show bean count',
+      4: 'Exit'
+  }
+
+  while(True):
     print("Main menu")
     print("---------")
-    print("List all beans - 1")
-    print("List all endpoints - 2")
-    print("Show bean count - 3")
-    print("Exit - X")
-    userinput = str(input("Enter your choice: "))
+    for k in menu_options.keys():
+        print(k,"-",menu_options[k])
+    userinput = int(input("Enter your choice: "))
 
-
-    if userinput == "1":
+    if userinput == 1:
         all_java_files = find_all_java_files('/Users/martinbaumer/Documents/gitrepo/spring-boot-webclient-sandbox/04_testing_1/src/main/java')
         bean_mapping = find_beans(all_java_files)
         print_beans(bean_mapping)
-    elif userinput == "2":
+    elif userinput == 2:
         all_java_files = find_all_java_files('/Users/martinbaumer/Documents/gitrepo/spring-boot-webclient-sandbox/04_testing_1/src/main/java')
         bean_mapping = find_beans(all_java_files)
         endpoints = find_endpoints_per_controller(bean_mapping)
         print_endpoints(endpoints)
-    elif userinput == "3":
+    elif userinput == 3:
         all_java_files = find_all_java_files('/Users/martinbaumer/Documents/gitrepo/spring-boot-webclient-sandbox/04_testing_1/src/main/java')
         bean_mapping = find_beans(all_java_files)
         get_bean_counts(bean_mapping)
+    else:
+        exit(0)
 
 
 
