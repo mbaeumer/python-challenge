@@ -1,12 +1,28 @@
 import glob
 from bean_type import BeanType
 from endpoint import Endpoint
+import sys
+from cli_handler import CliHandler
+from cli_validation_result import ValidationResult
 
 # find all Java files
 # find all RestControllers, Service, Component
 # find all endpoints
 
-def show_menu():
+def handle_cli_args(argv):
+    cli = CliHandler(argv)
+    if cli.isValidArgs() == ValidationResult.NOT_ENOUGH_ARGS:
+        print("ERROR: Please provide a valid argument")
+        raise RuntimeError
+    elif cli.isValidArgs() == ValidationResult.NO_DIRECTORY:
+        print("ERROR: Please provide a a path to a directory")
+        raise RuntimeError
+    elif cli.isValidArgs() == ValidationResult.NOT_ROOT_FOLDER:
+        print("ERROR: The provided path is not the root of the project")
+        raise RuntimeError
+
+def show_menu(root_path):
+  source_root = root_path + "/src/main/java"
   menu_options = {
       1: 'List all beans',
       2: 'List all endpoints',
@@ -26,16 +42,16 @@ def show_menu():
         continue
 
     if userinput == 1:
-        all_java_files = find_all_java_files('/Users/martinbaumer/Documents/gitrepo/spring-boot-webclient-sandbox/04_testing_1/src/main/java')
+        all_java_files = find_all_java_files(source_root)
         bean_mapping = find_beans(all_java_files)
         print_beans(bean_mapping)
     elif userinput == 2:
-        all_java_files = find_all_java_files('/Users/martinbaumer/Documents/gitrepo/spring-boot-webclient-sandbox/04_testing_1/src/main/java')
+        all_java_files = find_all_java_files(source_root)
         bean_mapping = find_beans(all_java_files)
         endpoints = find_endpoints_per_controller(bean_mapping)
         print_endpoints(endpoints)
     elif userinput == 3:
-        all_java_files = find_all_java_files('/Users/martinbaumer/Documents/gitrepo/spring-boot-webclient-sandbox/04_testing_1/src/main/java')
+        all_java_files = find_all_java_files(source_root)
         bean_mapping = find_beans(all_java_files)
         get_bean_counts(bean_mapping)
     elif userinput == 4:
@@ -179,5 +195,10 @@ def get_bean_counts(bean_mapping):
     print("Number of configuration: \t %d" % (configuration_counter))
 
 if __name__ == '__main__':
-    show_menu()
-
+    try:
+        handle_cli_args(sys.argv)
+        root_path = sys.argv[1]
+        print("parameter: " + root_path)
+        show_menu(root_path)
+    except RuntimeError:
+        print("End of story")
