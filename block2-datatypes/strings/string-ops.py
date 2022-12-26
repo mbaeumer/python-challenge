@@ -72,4 +72,15 @@ if not name:
   print("the name is still not set")
 else: 
   print("now the name is set")
+
+print("Experiment")
+print(lorem)
+print("lorem[1] >> %s" % (lorem[1]))
+print("lorem[10] >> %s" % (lorem[10]))
+print("lorem[1:] >> %s" % (lorem[1:]))
+print("lorem[5:] >> %s" % (lorem[5:]))
+print("lorem[:1] >> %s" % (lorem[:1]))
+print("lorem[:6] >> %s" % (lorem[:6]))
+print("lorem[:8] >> %s" % (lorem[:8]))
+print("lorem[1:3] >> %s" % (lorem[1:3]))
   
