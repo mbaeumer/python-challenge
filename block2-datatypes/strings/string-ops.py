@@ -103,6 +103,27 @@ def use_string_indices():
   print("lorem[:6] >> %s" % (lorem[:6]))
   print("lorem[:8] >> %s" % (lorem[:8]))
   print("lorem[1:3] >> %s" % (lorem[1:3]))
+
+def use_strip():
+  lorem = "  Lorem ipsum  "
+  print("original string: %s" % (lorem))
+  print("after strip: %s" % (lorem.strip()))
+
+def create_binary_array():
+  binary_lorem = b"Lorem ipsum"
+  print(binary_lorem)
+  print(binary_lorem[0])
+  return binary_lorem
+
+def binary_to_string(binary):
+  print(binary.decode())
+  return binary.decode()
+
+def string_to_binary(string):
+  print("string parameter: %s" % (string))
+  print(string.encode())
+
+
   
 if __name__ == '__main__':
   some_classic_string_ops()
@@ -115,3 +136,7 @@ if __name__ == '__main__':
   insert_character_in_string()
   use_not_operator()
   use_string_indices()
+  use_strip()
+  binary = create_binary_array()
+  string = binary_to_string(binary)
+  string_to_binary(string)
