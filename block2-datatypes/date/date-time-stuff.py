@@ -1,6 +1,5 @@
 #!/usr/bin/python
 import time
-import date
 
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -46,6 +45,22 @@ def calculate_time_difference():
   print("seconds: ", (date2 - date1).seconds)
   print("microseconds: ", (date2 - date1).microseconds)
 
+def get_date_details():
+  date = datetime.date.today()
+  print("year: %d" % (date.year))
+  print("month: %d" % (date.month))
+  print("day: %d" % (date.day))
+
+def get_datetime_partials():
+  date = datetime.datetime.now()
+  print("year: %d" % (date.year))
+  print("month: %d" % (date.month))
+  print("day: %d" % (date.day))
+  print("hour: %d" % (date.hour))
+  print("minute: %d" % (date.minute))
+  print("second: %d" % (date.second))
+  print("weekday: %d" % (date.weekday()))
+
 if __name__ == '__main__':
   print("Some time and date stuff")
   print("------------------------")
@@ -53,5 +68,6 @@ if __name__ == '__main__':
   create_date_with_datetime()
   time_arithmetic()
   calculate_time_difference()
-
+  get_datetime_partials()
+  get_date_details()
 
