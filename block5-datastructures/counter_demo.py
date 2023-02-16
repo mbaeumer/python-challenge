@@ -58,6 +58,19 @@ def update():
     counterA.update(counterB)
     print(counterA)
 
+def intersection():
+    counterA = Counter('aba')
+    counterB = Counter('abb')
+    result = counterA & counterB
+    print(result)
+
+def union():
+    counterA = Counter('aba')
+    counterB = Counter('abb')
+    result = counterA | counterB
+    print(result)
+
+
 
 
 # source: https://www.digitalocean.com/community/tutorials/python-counter-python-collections-counter
@@ -73,3 +86,5 @@ if __name__ == '__main__':
     most_common()
     subtract()
     update()
+    intersection()
+    union()
