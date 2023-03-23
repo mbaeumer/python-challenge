@@ -22,6 +22,16 @@ def one_character_of_demo():
 def one_character_except_demo():
     print(re.search(r"[^a-d]", "abecd"))
 
+def valid_minute_demo(time_string):
+    match = re.match(r"^[0-5]",time_string)
+    return match
+
+def valid_minute_group_demo(time_string):
+    print("minute_group")
+    match = re.match(r"^[0-5]",time_string)
+    return match.group()
+
+
 if __name__ == '__main__':
     string = "This is a sentence with characters and 0 numbers"
     start_with_number = "5446 is my number"
@@ -33,3 +43,7 @@ if __name__ == '__main__':
     findall_demo()
     one_character_of_demo()
     one_character_except_demo()
+    print(valid_minute_demo(""))
+    print(valid_minute_demo("0"))
+    print(valid_minute_group_demo("0"))
+    print(valid_minute_group_demo("6"))
