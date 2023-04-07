@@ -61,6 +61,14 @@ def get_datetime_partials():
   print("second: %d" % (date.second))
   print("weekday: %d" % (date.weekday()))
 
+def set_datetime_year(year):
+  date = datetime.datetime.now()
+  print("year before: %d" % (date.year))
+  date.year = year
+  print("year after: %d" % (date.year))
+
+
+
 if __name__ == '__main__':
   print("Some time and date stuff")
   print("------------------------")
@@ -70,4 +78,5 @@ if __name__ == '__main__':
   calculate_time_difference()
   get_datetime_partials()
   get_date_details()
+  set_datetime_year(2032)
 
