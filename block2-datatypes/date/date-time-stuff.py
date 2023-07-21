@@ -61,11 +61,18 @@ def get_datetime_partials():
   print("second: %d" % (date.second))
   print("weekday: %d" % (date.weekday()))
 
-def set_datetime_year(year):
+def set_datetime_year(year_input):
   date = datetime.datetime.now()
   print("year before: %d" % (date.year))
-  date.year = year
+  # NOTE: date/datetime are immutable. Use date.replace to change parts of a date
+  date = date.replace(year = year_input)
   print("year after: %d" % (date.year))
+
+def show_type_of_date_and_datetime():
+  date1 = datetime.datetime.strptime("2017-07-01 15:34", "%Y-%m-%d %H:%M")
+  date2 = datetime.datetime.strptime("2017-07-02", "%Y-%m-%d")
+  print(type(date1))
+  print(type(date2))
 
 
 
@@ -79,4 +86,5 @@ if __name__ == '__main__':
   get_datetime_partials()
   get_date_details()
   set_datetime_year(2032)
+  show_type_of_date_and_datetime()
 
