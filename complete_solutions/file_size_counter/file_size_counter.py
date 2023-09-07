@@ -28,5 +28,5 @@ def get_file_stats(filename):
 
 if __name__ == '__main__':
     count_total_file_size('/Users/martinbaumer/Documents', False)
-    count_total_file_size('/Users/martinbaumer/Downloads', True)
+    count_total_file_size('/Users/martinbaumer/Downloads', False)
     count_total_file_size('/Users/martinbaumer/Desktop', False)
