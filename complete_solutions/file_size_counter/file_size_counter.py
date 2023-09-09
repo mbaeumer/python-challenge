@@ -2,6 +2,32 @@ import glob
 from os import stat
 from os.path import isdir
 
+def show_menu():
+    menu_options = {
+        1: 'Quick overview',
+        2: 'Exit'
+    }
+
+    while (True):
+        print("Main menu")
+        print("---------")
+        for k in menu_options.keys():
+            print(k, "-", menu_options[k])
+        try:
+            userinput = int(input("Enter your choice: "))
+        except ValueError:
+            print("Please enter a number")
+            continue
+
+        if userinput == 1:
+            show_quick_overview()
+        else:
+            exit(0)
+
+def show_quick_overview():
+    count_total_file_size('/Users/martinbaumer/Documents', False)
+    count_total_file_size('/Users/martinbaumer/Downloads', False)
+    count_total_file_size('/Users/martinbaumer/Desktop', False)
 
 def count_total_file_size(base_dir, recursive):
     if recursive:
@@ -27,6 +53,4 @@ def get_file_stats(filename):
     return filesize
 
 if __name__ == '__main__':
-    count_total_file_size('/Users/martinbaumer/Documents', False)
-    count_total_file_size('/Users/martinbaumer/Downloads', False)
-    count_total_file_size('/Users/martinbaumer/Desktop', False)
+    show_menu()
