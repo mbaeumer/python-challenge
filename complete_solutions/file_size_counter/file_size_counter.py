@@ -92,6 +92,8 @@ def get_file_stats(filename):
 def show_detailed_overview(folder):
     print('This is a detailed overview on %s'% (folder))
 
+    count_total_file_size(folder, False)
+
     largest_file = get_largest_file(folder)
     print('Largest file: %s, file size: %d' % (largest_file , get_file_stats(largest_file) % 1024))
 
