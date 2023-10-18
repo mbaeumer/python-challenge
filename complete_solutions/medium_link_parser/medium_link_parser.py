@@ -34,6 +34,10 @@ def reparse_links(linkList):
             newLink = link[0:link.find("?source=email")] + "\n"
             parsedLinks.append(newLink)
             mediumLinks = mediumLinks + 1
+        elif "medium.com" in link and "source=list" in link:
+            newLink = link[0:link.find("?source=list")] + "\n"
+            parsedLinks.append(newLink)
+            mediumLinks = mediumLinks + 1
         elif "medium.com" in link:
             mediumLinks = mediumLinks + 1
             parsedLinks.append(link)
