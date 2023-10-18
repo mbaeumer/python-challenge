@@ -1,6 +1,8 @@
 import glob
 from os import stat
 from os.path import isdir
+import pathlib
+from collections import Counter
 
 def show_menu():
     menu_options = {
@@ -100,6 +102,9 @@ def show_detailed_overview(folder):
     smallest_file = get_smallest_file(folder)
     print('Smallest file: %s, file size: %d' % (smallest_file, get_file_stats(smallest_file) % 1024))
 
+    print('Number of files per file extension')
+    count_file_extensions(folder)
+
 def get_largest_file(base_dir):
     files = get_files_in_directory(base_dir, False)
     max_file_size = 0
@@ -119,6 +124,20 @@ def get_smallest_file(base_dir):
             smallest_file = file
             min_file_size = get_file_stats(file)
     return smallest_file
+
+def count_file_extensions(base_dir):
+    file_extensions = get_file_extensions(base_dir)
+    extension_counts = Counter(file_extensions)
+    for k in extension_counts.keys():
+        print(k, ":", extension_counts[k])
+
+def get_file_extensions(base_dir):
+    files = get_files_in_directory(base_dir, False)
+    file_extensions = []
+    for file in files:
+        if not isdir(file):
+            file_extensions.append(pathlib.Path(file).suffix)
+    return file_extensions
 
 if __name__ == '__main__':
     show_menu()
